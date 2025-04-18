@@ -1,8 +1,30 @@
+import { useState } from 'react'
 import AddQuest from './components/addQuest.jsx'
+import QuestList from './components/questList.jsx'
 
 function App() {
-  function saveAddQuest(quest) {
-    console.log(quest)
+  const [quests, setQuests] = useState([])
+  function saveAddQuest(title) {
+    let auxQuests = quests
+    let id = 0
+    if (auxQuests.length) {
+      id = auxQuests[auxQuests.length - 1].id
+    }
+    id++
+
+    const createdQuest = {
+      id:id,
+      title: title,
+      status: "aberto",
+      created_at: new Date(Date.now()).toUTCString()
+    }
+    auxQuests.push(createdQuest)
+    localStorage.setItem("quests", JSON.stringify(auxQuests))
+    getQuests()
+  }
+
+  function getQuests() {
+    setQuests(JSON.parse(window.localStorage.getItem("quests")))
   }
 
   return (
@@ -12,6 +34,7 @@ function App() {
           Quest To Do
         </h1>
         <AddQuest saveAddQuest={saveAddQuest}/>
+        <QuestList quests={quests}/>
       </div>
     </div>
   )
