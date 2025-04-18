@@ -1,10 +1,17 @@
+import AddQuest from './components/addQuest.jsx'
+
 function App() {
+  function saveAddQuest(quest) {
+    console.log(quest)
+  }
+
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div className="card w-[80%] lg:w-[50%] h-[70%] shadow-md rounded-sm transform ease-out duration-300 items-center p-10 gap-5">
-        <h1 className="text-5xl font-work font-bold w-fit text-center">
+    <div className="flex h-screen justify-center items-center bg-[#F4F5FB]">
+      <div className="w-[100%] sm:w-[40rem] h-[70%] rounded-sm">
+        <h1 className="text-3xl font-work font-bold w-fit text-center mb-[2.75rem]">
           Quest To Do
         </h1>
+        <AddQuest saveAddQuest={saveAddQuest}/>
       </div>
     </div>
   )
