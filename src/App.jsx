@@ -6,8 +6,8 @@ function App() {
   const localQuests = JSON.parse(window.localStorage.getItem("quests")) || []
   const [quests, setQuests] = useState(localQuests)
 
-  const concludedQuests = quests.filter((quest) => quest.status === "concluido")
   const notConcludedQuests = quests.filter((quest) => quest.status === "aberto")
+  const concludedQuests = quests.filter((quest) => quest.status === "concluido")
 
   function saveEditQuest(quest, title) {
     let auxQuests = quests
@@ -68,6 +68,17 @@ function App() {
     getQuests()
   }
 
+  function saveDeleteQuest(quest) {
+    let auxQuests = quests
+
+    const filterAuxQuests = auxQuests.filter(
+      (auxQuest) => auxQuest.id !== quest.id
+    )
+
+    localStorage.setItem("quests", JSON.stringify(filterAuxQuests))
+    getQuests()
+  }
+
   function getQuests() {
     setQuests(JSON.parse(window.localStorage.getItem("quests")))
   }
@@ -86,15 +97,17 @@ function App() {
             quests={notConcludedQuests}
             saveEditQuest={saveEditQuest}
             saveConcludedQuest={saveConcludedQuest}
+            saveDeleteQuest={saveDeleteQuest}
           />
         </div>
 
         <div className='flex flex-col gap-4 w-ful items-center mt-10'>
-          <h2 className='text-2xl font-bold font-work text-[#374151]'>Concluídas</h2>
+          <h2 className='text-2xl font-bold font-work text-[#374151]' >Concluídas</h2>
           <QuestList 
             quests={concludedQuests}
             saveEditQuest={saveEditQuest}
             saveConcludedQuest={saveConcludedQuest}
+            saveDeleteQuest={saveDeleteQuest}
           />
         </div>
       </div>

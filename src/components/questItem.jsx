@@ -35,6 +35,30 @@ export default function QuestItem(props) {
           </p>
         )}
       </div>
+
+      {!concluded && (
+        <div className="flex gap-2 mt-2">
+          <button 
+            onClick={() => {
+              if (editMode) props.saveEditQuest(props.quest, title)
+              setEditMode(!editMode)
+            }}
+            className="text-sm text-blue-400 hover:text-blue-600"
+          >
+            {editMode ? "Salvar" : "Editar"}
+          </button>
+
+          <button
+            onClick={() => {
+              if (concluded) return
+              else props.saveDeleteQuest(props.quest)
+            }}
+            className="text-sm text-red-400 hover:text-red-600"
+          >
+            Excluir
+          </button>
+        </div>
+      )}
     </div>
   )
 }
