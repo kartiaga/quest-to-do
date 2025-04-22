@@ -6,7 +6,7 @@ function AddQuest(props) {
   return (
     <div className="flex justify-center items-center gap-4 w-full h-[2.75rem]">
       <input
-        type="text" 
+        type="text"
         placeholder="Adicione uma nova tarefa"
         className="pl-4.5 flex w-[100%] h-[100%] rounded-[12px] bg-[#FFF] border-[2px] border-[#D1D5DB] hover:border-[#B9C2D0] focus:outline-[#CA3884]"
         onChange={(event) => setTitle(event.target.value)}
