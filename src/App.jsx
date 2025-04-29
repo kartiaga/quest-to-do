@@ -85,14 +85,13 @@ function App() {
 
   return (
     <div className="flex min-h-screen justify-center bg-[#F4F5FB]">
-      <div className="w-[100%] sm:w-[40rem] h-[70%] rounded-sm mt-30">
+      <div className="h-[70%] w-[100%] mx-8 rounded-sm mt-30 sm:w-[40rem]">
         <h1 className="text-3xl font-work font-bold w-fit text-center mb-[2.75rem] text-[#374151]">
-          Lista de tarefas
+          Quadro de tarefas
         </h1>
         <AddQuest saveAddQuest={saveAddQuest}/>
 
-        <div className='flex flex-col gap-4 w-ful items-center mt-10'>
-          <h2 className='text-2xl font-bold font-work text-[#374151]'>Abertas</h2>
+        <div className='flex flex-col gap-4 w-ful mt-10'>
           <QuestList 
             quests={notConcludedQuests}
             saveEditQuest={saveEditQuest}
@@ -101,8 +100,10 @@ function App() {
           />
         </div>
 
-        <div className='flex flex-col gap-4 w-ful items-center mt-10'>
-          <h2 className='text-2xl font-bold font-work text-[#374151]' >Concluídas</h2>
+        {concludedQuests.length > 0 && (
+
+        <div className='flex flex-col gap-4 w-ful mt-10'>
+          <h2 className='text-2xl font-bold font-work text-gray-500' >Tarefas concluídas</h2>
           <QuestList 
             quests={concludedQuests}
             saveEditQuest={saveEditQuest}
@@ -110,6 +111,7 @@ function App() {
             saveDeleteQuest={saveDeleteQuest}
           />
         </div>
+        )}
       </div>
     </div>
   )
