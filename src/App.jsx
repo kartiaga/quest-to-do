@@ -50,6 +50,11 @@ function App() {
   }
 
   function saveAddQuest(title) {
+    if (title === "") {
+      alert("Preencha o título da tarefa!")
+      return
+    }
+
     let auxQuests = quests
     let id = 0
     if (auxQuests.length) {
@@ -83,6 +88,13 @@ function App() {
     setQuests(JSON.parse(window.localStorage.getItem("quests")))
   }
 
+  function clearDoneQuests() {
+    let auxQuests = quests.filter((quest) => quest.status !== "concluido")
+
+    localStorage.setItem("quests" , JSON.stringify(auxQuests))
+    getQuests()
+  }
+
   return (
     <div className="flex min-h-screen justify-center bg-[#F4F5FB]">
       <div className="h-[70%] w-[100%] mx-8 rounded-sm mt-30 sm:w-[40rem]">
@@ -110,6 +122,12 @@ function App() {
             saveConcludedQuest={saveConcludedQuest}
             saveDeleteQuest={saveDeleteQuest}
           />
+          <button
+            className='bg-[#CA3884] hover:bg-[#A52C6B] text-[#FFF] w-[16rem] h-[2.75rem] px-6 rounded-[12px] focus:outline-[#A52C6B] my-5 max-sm:w-full'
+            onClick={clearDoneQuests}
+          >
+            Limpar tarefas concluídas
+          </button>
         </div>
         )}
       </div>
