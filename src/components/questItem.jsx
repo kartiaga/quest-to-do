@@ -28,6 +28,12 @@ export default function QuestItem(props) {
             onChange={(event) => setTitle(event.target.value)}
             className="bg-gray-100 text-black pl-2 mr-2 w-full rounded-[4px] focus:outline-gray-300"
             autoFocus
+            onKeyUp={(event) => {
+              if (event.key === "Enter") {
+                props.saveEditQuest(props.quest, title)
+                setEditMode(!editMode)
+              }
+            }}
           />
         ) : (
           <p className={`break-words ${concluded ? "line-through pr-3" : ""}`}>

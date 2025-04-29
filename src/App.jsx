@@ -50,6 +50,7 @@ function App() {
   }
 
   function saveAddQuest(title) {
+    title = title.trim()
     if (title === "") {
       alert("Preencha o título da tarefa!")
       return
